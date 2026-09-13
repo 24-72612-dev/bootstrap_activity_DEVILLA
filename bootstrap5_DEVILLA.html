@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoundWave Fest 2026 — Feel The Beat</title>
+
+  <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="bootstrap5/css/bootstrap-icons.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+  <style>
+    :root {
+      --neon-purple: #b026ff;
+      --neon-pink: #ff2d78;
+      --neon-yellow: #f0c040;
+      --neon-blue: #00d4ff;
+      --dark-bg: #0a0a0f;
+      --dark-card: #12121a;
+      --dark-surface: #1a1a2e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark-bg);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+    .neon-text {
+      color: var(--neon-purple);
+      text-shadow: 0 0 10px var(--neon-purple), 0 0 30px var(--neon-purple), 0 0 60px var(--neon-purple);
+    }
+    .neon-border {
+      border: 1px solid var(--neon-purple);
+      box-shadow: 0 0 10px var(--neon-purple), inset 0 0 10px rgba(176, 38, 255, 0.1);
+    }
+    .neon-pink-text {
+      color: var(--neon-pink);
+      text-shadow: 0 0 10px var(--neon-pink), 0 0 30px var(--neon-pink);
+    }
+
+    .btn-neon {
+      background: transparent;
+      border: 2px solid var(--neon-yellow);
+      color: var(--neon-yellow);
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(240, 192, 64, 0.4);
+    }
+    .btn-neon:hover {
+      background: var(--neon-yellow);
+      color: #000;
+      box-shadow: 0 0 25px rgba(240, 192, 64, 0.8), 0 0 50px rgba(240, 192, 64, 0.4);
+    }
+    .btn-neon-outline {
+      background: transparent;
+      border: 2px solid var(--neon-pink);
+      color: var(--neon-pink);
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+    .btn-neon-outline:hover {
+      background: var(--neon-pink);
+      color: #fff;
+      box-shadow: 0 0 25px rgba(255, 45, 120, 0.8);
+    }
+
+    .festival-card {
+      background: var(--dark-card);
+      border: 1px solid rgba(176, 38, 255, 0.2);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .festival-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--neon-purple);
+      box-shadow: 0 20px 40px rgba(176, 38, 255, 0.3);
+    }
+    .festival-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
+    }
+
+    .icon-glow {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(176, 38, 255, 0.15);
+      border: 1px solid var(--neon-purple);
+      box-shadow: 0 0 20px rgba(176, 38, 255, 0.4);
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: var(--neon-purple);
+    }
+
+    .neon-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon-purple), var(--neon-pink), transparent);
+      margin: 0 auto 3rem;
+      width: 60%;
+      border: none;
+    }
+
+    .pricing-featured {
+      background: linear-gradient(145deg, #1a0a2e, #0a0a1f);
+      border: 2px solid var(--neon-purple) !important;
+      box-shadow: 0 0 30px rgba(176, 38, 255, 0.4), 0 0 60px rgba(176, 38, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a0a2e 40%, #0f0a1a 70%, #0a0f1a 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(176,38,255,0.15) 0%, transparent 70%);
+      top: -100px; left: -100px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,45,120,0.1) 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-heading {
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    .hero-stat {
+      padding: 1rem 1.5rem;
+      border-left: 2px solid rgba(176, 38, 255, 0.3);
+    }
+    .hero-stat:first-child { border-left: none; }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(176, 38, 255, 0.5);
+      background: rgba(176, 38, 255, 0.1);
+      border-radius: 999px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.8rem;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 2px;
+      color: var(--neon-purple);
+      margin-bottom: 1.5rem;
+    }
+    .live-dot {
+      width: 8px; height: 8px;
+      background: var(--neon-pink);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--neon-pink);
+      animation: pulse-dot 1.5s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .navbar-custom {
+      background: rgba(10, 10, 15, 0.95) !important;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(176, 38, 255, 0.3);
+    }
+    .navbar-custom .nav-link {
+      color: rgba(255,255,255,0.8) !important;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .navbar-custom .nav-link:hover,
+    .navbar-custom .nav-link.nav-active {
+      color: var(--neon-purple) !important;
+    }
+    .navbar-toggler { border-color: rgba(176,38,255,0.5); }
+    .navbar-toggler-icon { filter: invert(1); }
+
+    .neon-input {
+      background: rgba(255,255,255,0.05) !important;
+      border: 1px solid rgba(176, 38, 255, 0.3) !important;
+      color: #fff !important;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .neon-input::placeholder { color: rgba(255,255,255,0.35); }
+    .neon-input:focus {
+      border-color: var(--neon-purple) !important;
+      box-shadow: 0 0 15px rgba(176, 38, 255, 0.4) !important;
+      background: rgba(176, 38, 255, 0.05) !important;
+      outline: none;
+    }
+    .input-group-text {
+      background: rgba(176, 38, 255, 0.15);
+      border: 1px solid rgba(176, 38, 255, 0.3);
+      color: var(--neon-purple);
+    }
+
+    .testimonial-card {
+      background: var(--dark-card);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 45, 120, 0.2);
+      transition: all 0.3s;
+    }
+    .testimonial-card:hover {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 25px rgba(255, 45, 120, 0.2);
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon { display: none; }
+    .carousel-btn {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--neon-pink);
+      background: transparent;
+      color: var(--neon-pink);
+      font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .carousel-btn:hover {
+      background: var(--neon-pink);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(255, 45, 120, 0.6);
+    }
+    .carousel-indicators [data-bs-target] {
+      background-color: var(--neon-pink);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+    .carousel-indicators .active { opacity: 1; }
+
+    .social-icon {
+      font-size: 1.5rem;
+      color: rgba(255,255,255,0.5);
+      transition: all 0.3s;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .social-icon:hover {
+      color: var(--neon-yellow);
+      text-shadow: 0 0 15px var(--neon-yellow);
+      transform: translateY(-3px);
+      display: inline-block;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid rgba(176, 38, 255, 0.4);
+      background: rgba(176, 38, 255, 0.08);
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      font-size: 0.75rem;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 2px;
+      color: var(--neon-purple);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .artist-card {
+      background: var(--dark-card);
+      border: 1px solid rgba(176, 38, 255, 0.2);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .artist-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    }
+    .artist-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--neon-blue);
+      box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+    }
+    .stage-pill {
+      display: inline-block;
+      background: rgba(176, 38, 255, 0.25);
+      border: 1px solid rgba(176, 38, 255, 0.5);
+      color: var(--neon-purple);
+      border-radius: 999px;
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      padding: 0.2rem 0.75rem;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .price-value {
+      font-size: 2.5rem;
+      font-weight: 900;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    body.light-mode {
+      background: #f0f0f8;
+      color: #111;
+    }
+    body.light-mode .navbar-custom {
+      background: rgba(240,240,248,0.95) !important;
+    }
+    body.light-mode .navbar-custom .nav-link {
+      color: rgba(0,0,0,0.75) !important;
+    }
+    body.light-mode .festival-card,
+    body.light-mode .artist-card,
+    body.light-mode .testimonial-card {
+      background: #fff;
+    }
+    body.light-mode .hero-section {
+      background: linear-gradient(135deg, #e8e0ff 0%, #f0d8ff 40%, #ffe0f0 100%);
+    }
+    body.light-mode .navbar-brand span,
+    body.light-mode .hero-heading span:not(.neon-text),
+    body.light-mode .hero-section .hero-stat > div:first-child,
+    body.light-mode .artist-card h5,
+    body.light-mode .pricing-featured {
+      color: #20202c !important;
+    }
+    body.light-mode .navbar-toggler-icon { filter: none; }
+    body.light-mode .navbar-custom { border-bottom-color: rgba(96, 53, 180, 0.25); }
+    body.light-mode .hero-section p,
+    body.light-mode .hero-section .hero-stat div:last-child,
+    body.light-mode .festival-card p,
+    body.light-mode .festival-card ul,
+    body.light-mode .artist-card p,
+    body.light-mode .testimonial-card p {
+      color: rgba(32, 32, 44, 0.68) !important;
+    }
+    body.light-mode .testimonial-card h5 { color: #20202c !important; }
+    body.light-mode #features,
+    body.light-mode #pricing,
+    body.light-mode #contact {
+      background: #e6e7f0 !important;
+    }
+    body.light-mode #lineup,
+    body.light-mode #testimonials {
+      background: #f7f7fb !important;
+    }
+    body.light-mode .festival-card,
+    body.light-mode .artist-card,
+    body.light-mode .testimonial-card {
+      border-color: rgba(96, 53, 180, 0.2);
+      box-shadow: 0 10px 30px rgba(54, 45, 90, 0.08);
+    }
+    body.light-mode .pricing-featured {
+      background: linear-gradient(145deg, #fff, #f1eaff) !important;
+      border-color: var(--neon-purple) !important;
+    }
+    body.light-mode .neon-input {
+      background: #fff !important;
+      color: #20202c !important;
+    }
+    body.light-mode .neon-input::placeholder { color: rgba(32, 32, 44, 0.45); }
+    body.light-mode .input-group-text {
+      background: rgba(176, 38, 255, 0.1);
+      border-color: rgba(96, 53, 180, 0.25);
+    }
+    body.light-mode .social-icon { color: rgba(32, 32, 44, 0.55); }
+    body.light-mode footer {
+      background: #20202c;
+    }
+    body.light-mode footer .d-flex span { color: #fff !important; }
+    body.light-mode footer p { color: rgba(255, 255, 255, 0.62) !important; }
+    body.light-mode footer p:last-child { color: rgba(255, 255, 255, 0.48) !important; }
+    body.light-mode footer .social-icon { color: rgba(255, 255, 255, 0.62); }
+    body.light-mode ::-webkit-scrollbar-track { background: #e6e7f0; }
+
+    footer {
+      background: #050508;
+      border-top: 1px solid rgba(176, 38, 255, 0.3);
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--neon-purple); border-radius: 3px; }
+
+    .text-muted-neon { color: rgba(255,255,255,0.5); }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-custom sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <i class="bi bi-soundwave" style="color: var(--neon-purple); font-size:1.6rem;"></i>
+      <span style="font-family:'Orbitron'; color:#fff; font-weight:700; font-size:1.1rem; letter-spacing:1px;">
+        SOUND<span style="color:var(--neon-purple);">WAVE</span>
+      </span>
+    </a>
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-lg-1">
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#home"><i class="bi bi-house-fill me-1"></i>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#features"><i class="bi bi-lightning-charge-fill me-1"></i>Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#pricing"><i class="bi bi-gem me-1"></i>Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#testimonials"><i class="bi bi-people-fill me-1"></i>Testimonials</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#contact"><i class="bi bi-envelope-fill me-1"></i>Contact</a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <button id="themeToggle" class="btn btn-sm btn-link text-white p-0" title="Toggle theme">
+          <i class="bi bi-moon-fill fs-5"></i>
+        </button>
+        <a href="#pricing" class="btn btn-neon px-4 py-2">
+          <i class="bi bi-ticket-fill me-2"></i>GET TICKETS
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section id="home" class="hero-section py-5">
+  <div class="container position-relative" style="z-index:2;">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+
+        <div class="live-badge reveal">
+          <span class="live-dot"></span>
+          <i class="bi bi-broadcast-pin"></i>
+          LIVE 2026 &middot; 3 DAYS &middot; 50+ ARTISTS
+        </div>
+
+        <h1 class="hero-heading mb-4 reveal" style="transition-delay:0.1s;">
+          <span style="color:#fff; display:block;">FEEL THE</span>
+          <span class="neon-text" style="display:block;">BEAT</span>
+          <span style="color:#fff; display:block; font-size:60%;">LIVE THE MOMENT</span>
+        </h1>
+
+        <p class="mb-5 reveal" style="color:rgba(255,255,255,0.6); font-size:1.1rem; max-width:500px; transition-delay:0.2s;">
+          Join 50,000+ music lovers at the most electrifying concert festival of the year. Three stages. Endless vibes.
+        </p>
+
+        <div class="d-flex flex-wrap gap-0 mb-5 reveal" style="transition-delay:0.3s;">
+          <div class="hero-stat text-center">
+            <div style="font-size:1.6rem; font-weight:700; font-family:'Orbitron';">50,000+</div>
+            <div style="font-size:0.8rem; color:rgba(255,255,255,0.5);">
+              <i class="bi bi-people-fill me-1" style="color:var(--neon-purple);"></i>Attendees
+            </div>
+          </div>
+          <div class="hero-stat text-center">
+            <div style="font-size:1.6rem; font-weight:700; font-family:'Orbitron';">50+</div>
+            <div style="font-size:0.8rem; color:rgba(255,255,255,0.5);">
+              <i class="bi bi-music-note-beamed me-1" style="color:var(--neon-pink);"></i>Artists
+            </div>
+          </div>
+          <div class="hero-stat text-center">
+            <div style="font-size:1.6rem; font-weight:700; font-family:'Orbitron';">3</div>
+            <div style="font-size:0.8rem; color:rgba(255,255,255,0.5);">
+              <i class="bi bi-geo-alt-fill me-1" style="color:var(--neon-yellow);"></i>Stages
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3 reveal" style="transition-delay:0.4s;">
+          <a href="#pricing" class="btn btn-neon btn-lg px-5 py-3">
+            <i class="bi bi-ticket-fill me-2"></i>GET TICKETS
+          </a>
+          <button class="btn btn-neon-outline btn-lg px-5 py-3"
+            onclick="Swal.fire({title:'Trailer Coming Soon 🎬',text:'The official SoundWave 2026 trailer drops December 1. Stay tuned!',icon:'info',confirmButtonColor:'#b026ff',background:'#12121a',color:'#fff'})">
+            <i class="bi bi-camera-video me-2"></i>WATCH TRAILER
+          </button>
+        </div>
+
+      </div>
+
+      <div class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center mt-5 mt-lg-0">
+        <div style="position:relative; width:340px; height:340px;">
+          <div style="position:absolute; inset:0; border-radius:50%; border:2px solid rgba(176,38,255,0.3); animation: spin-slow 20s linear infinite;"></div>
+          <div style="position:absolute; inset:30px; border-radius:50%; border:1px dashed rgba(255,45,120,0.4); animation: spin-slow 12s linear infinite reverse;"></div>
+          <div style="position:absolute; inset:70px; border-radius:50%; background:radial-gradient(circle, rgba(176,38,255,0.25), rgba(255,45,120,0.1), transparent); border:1px solid rgba(176,38,255,0.5); display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; gap:8px;">
+            <i class="bi bi-soundwave" style="font-size:4rem; color:var(--neon-purple); filter:drop-shadow(0 0 16px var(--neon-purple));"></i>
+            <span style="font-family:'Orbitron'; font-size:0.7rem; letter-spacing:3px; color:var(--neon-yellow);">DECEMBER 1–3</span>
+          </div>
+          <div style="position:absolute; inset:-10px; border-radius:50%; animation: spin-slow 8s linear infinite;">
+            <div style="position:absolute; top:0; left:50%; width:12px; height:12px; margin-left:-6px; border-radius:50%; background:var(--neon-yellow); box-shadow:0 0 10px var(--neon-yellow);"></div>
+          </div>
+          <div style="position:absolute; inset:15px; border-radius:50%; animation: spin-slow 14s linear infinite reverse;">
+            <div style="position:absolute; bottom:0; right:10%; width:8px; height:8px; border-radius:50%; background:var(--neon-pink); box-shadow:0 0 8px var(--neon-pink);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+</style>
+
+<section id="features" class="py-5" style="background: var(--dark-surface);">
+  <div class="container py-4">
+    <div class="text-center mb-2 reveal">
+      <div class="section-badge">
+        <i class="bi bi-stars"></i> WHY CHOOSE US
+      </div>
+    </div>
+    <h2 class="section-title text-center mb-2 reveal" style="transition-delay:0.1s;">
+      THE <span class="neon-text">ULTIMATE</span> EXPERIENCE
+    </h2>
+    <hr class="neon-divider reveal" style="transition-delay:0.15s;" />
+
+    <div class="row g-4">
+      <div class="col-md-4 reveal" style="transition-delay:0.2s;">
+        <div class="festival-card p-4 h-100 text-center">
+          <div class="icon-glow">
+            <i class="bi bi-trophy-fill"></i>
+          </div>
+          <h4 style="font-family:'Orbitron'; font-size:1rem; letter-spacing:1px; margin-bottom:1rem;">
+            WORLD-CLASS ARTISTS
+          </h4>
+          <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.7;">
+            Experience mind-blowing performances from top global and local artists across 3 epic stages.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal" style="transition-delay:0.3s;">
+        <div class="festival-card p-4 h-100 text-center">
+          <div class="icon-glow" style="background:rgba(255,45,120,0.15); border-color:var(--neon-pink); box-shadow:0 0 20px rgba(255,45,120,0.4); color:var(--neon-pink);">
+            <i class="bi bi-camera-video-fill"></i>
+          </div>
+          <h4 style="font-family:'Orbitron'; font-size:1rem; letter-spacing:1px; margin-bottom:1rem;">
+            LIVE STREAMING
+          </h4>
+          <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.7;">
+            Can't make it? Stream every performance in crystal-clear 4K from anywhere on the planet.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal" style="transition-delay:0.4s;">
+        <div class="festival-card p-4 h-100 text-center">
+          <div class="icon-glow" style="background:rgba(0,212,255,0.12); border-color:var(--neon-blue); box-shadow:0 0 20px rgba(0,212,255,0.4); color:var(--neon-blue);">
+            <i class="bi bi-shield-check-fill"></i>
+          </div>
+          <h4 style="font-family:'Orbitron'; font-size:1rem; letter-spacing:1px; margin-bottom:1rem;">
+            SAFE &amp; SECURE
+          </h4>
+          <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.7;">
+            State-of-the-art security and safety measures so you can focus on the music, not the worries.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lineup" class="py-5" style="background: var(--dark-bg);">
+  <div class="container py-4">
+    <div class="text-center mb-2 reveal">
+      <div class="section-badge" style="border-color:rgba(255,45,120,0.4); background:rgba(255,45,120,0.08); color:var(--neon-pink);">
+        <i class="bi bi-vinyl"></i> 2026 LINEUP
+      </div>
+    </div>
+    <h2 class="section-title text-center mb-4 reveal" style="transition-delay:0.1s;">
+      HEADLINERS <span class="neon-pink-text">ANNOUNCED</span>
+    </h2>
+
+    <div class="row g-4">
+      <div class="col-sm-6 col-md-3 reveal" style="transition-delay:0.15s;">
+        <div class="artist-card p-3 text-center h-100">
+          <i class="bi bi-mic-fill mb-3 d-block" style="font-size:2.5rem; color:var(--neon-purple);"></i>
+          <div class="stage-pill">MAIN STAGE</div>
+          <h5 style="font-family:'Orbitron'; font-weight:700; font-size:1rem; color:#fff; margin-bottom:0.25rem;">DJ NOVA</h5>
+          <p style="color:rgba(255,255,255,0.45); font-size:0.8rem; margin-bottom:0.5rem;">Electronic</p>
+          <span style="font-family:'Orbitron'; font-size:0.75rem; color:var(--neon-yellow);">Dec 1, 2026</span>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3 reveal" style="transition-delay:0.25s;">
+        <div class="artist-card p-3 text-center h-100">
+          <i class="bi bi-mic-fill mb-3 d-block" style="font-size:2.5rem; color:var(--neon-pink);"></i>
+          <div class="stage-pill" style="border-color:rgba(255,45,120,0.5); color:var(--neon-pink); background:rgba(255,45,120,0.12);">EAST STAGE</div>
+          <h5 style="font-family:'Orbitron'; font-weight:700; font-size:1rem; color:#fff; margin-bottom:0.25rem;">THE RIFFS</h5>
+          <p style="color:rgba(255,255,255,0.45); font-size:0.8rem; margin-bottom:0.5rem;">Rock</p>
+          <span style="font-family:'Orbitron'; font-size:0.75rem; color:var(--neon-yellow);">Dec 2, 2026 </span>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3 reveal" style="transition-delay:0.35s;">
+        <div class="artist-card p-3 text-center h-100">
+          <i class="bi bi-mic-fill mb-3 d-block" style="font-size:2.5rem; color:var(--neon-blue);"></i>
+          <div class="stage-pill" style="border-color:rgba(0,212,255,0.5); color:var(--neon-blue); background:rgba(0,212,255,0.1);">WEST STAGE</div>
+          <h5 style="font-family:'Orbitron'; font-weight:700; font-size:1rem; color:#fff; margin-bottom:0.25rem;">LUNA RAY</h5>
+          <p style="color:rgba(255,255,255,0.45); font-size:0.8rem; margin-bottom:0.5rem;">Pop</p>
+          <span style="font-family:'Orbitron'; font-size:0.75rem; color:var(--neon-yellow);">Dec 3, 2026</span>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3 reveal" style="transition-delay:0.45s;">
+        <div class="artist-card p-3 text-center h-100">
+          <i class="bi bi-mic-fill mb-3 d-block" style="font-size:2.5rem; color:var(--neon-yellow);"></i>
+          <div class="stage-pill" style="border-color:rgba(240,192,64,0.5); color:var(--neon-yellow); background:rgba(240,192,64,0.1);">MAIN STAGE</div>
+          <h5 style="font-family:'Orbitron'; font-weight:700; font-size:1rem; color:#fff; margin-bottom:0.25rem;">BASS DROP</h5>
+          <p style="color:rgba(255,255,255,0.45); font-size:0.8rem; margin-bottom:0.5rem;">Hip-Hop</p>
+          <span style="font-family:'Orbitron'; font-size:0.75rem; color:var(--neon-yellow);">Dec 3, 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="py-5" style="background: var(--dark-surface);">
+  <div class="container py-4">
+    <div class="text-center mb-2 reveal">
+      <div class="section-badge">
+        <i class="bi bi-gem"></i> FESTIVAL PASSES
+      </div>
+    </div>
+    <h2 class="section-title text-center mb-2 reveal" style="transition-delay:0.1s;">
+      CHOOSE YOUR <span class="neon-text">PASS</span>
+    </h2>
+    <hr class="neon-divider reveal" style="transition-delay:0.15s;" />
+
+    <div class="row g-4 align-items-center justify-content-center">
+
+      <div class="col-md-4 reveal" style="transition-delay:0.2s;">
+        <div class="festival-card p-4 text-center h-100">
+          <p class="text-uppercase mb-1" style="font-family:'Orbitron'; font-size:0.75rem; letter-spacing:3px; color:rgba(255,255,255,0.5);">STARTER</p>
+          <div class="price-value mb-1" style="color:#fff;">₱999</div>
+          <p style="color:rgba(255,255,255,0.4); font-size:0.8rem; margin-bottom:1.5rem;">per person</p>
+          <ul class="list-unstyled text-start mb-4" style="font-size:0.9rem; color:rgba(255,255,255,0.75);">
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>General Admission
+            </li>
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>1-Day Access
+            </li>
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>Standing Area
+            </li>
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-x-circle-fill text-danger me-2"></i><span style="opacity:0.4;">Reserved Seating</span>
+            </li>
+            <li class="py-2">
+              <i class="bi bi-x-circle-fill text-danger me-2"></i><span style="opacity:0.4;">Backstage Access</span>
+            </li>
+          </ul>
+          <button class="btn btn-neon-outline w-100 py-2" onclick="handleTicketPurchase('Starter', '₱999')">
+            <i class="bi bi-ticket me-2"></i>GET PASS
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-4 reveal" style="transition-delay:0.3s;">
+        <div class="festival-card pricing-featured p-4 text-center h-100">
+          <div class="mb-2">
+            <span style="background:var(--neon-purple); color:#fff; font-family:'Orbitron'; font-size:0.65rem; letter-spacing:2px; padding:0.3rem 1rem; border-radius:999px;">
+              <i class="bi bi-crown-fill me-1"></i>MOST POPULAR
+            </span>
+          </div>
+          <p class="text-uppercase mt-2 mb-1" style="font-family:'Orbitron'; font-size:0.75rem; letter-spacing:3px; color:rgba(255,255,255,0.6);">PRO</p>
+          <div class="price-value mb-1 neon-text">₱2,499</div>
+          <p style="color:rgba(255,255,255,0.4); font-size:0.8rem; margin-bottom:1.5rem;">per person</p>
+          <ul class="list-unstyled text-start mb-4" style="font-size:0.9rem; color:rgba(255,255,255,0.85);">
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>3-Day Full Access
+            </li>
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>Reserved Seating
+            </li>
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>Backstage Tour
+            </li>
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>Merch Bundle
+            </li>
+            <li class="py-2">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>Priority Entry
+            </li>
+          </ul>
+          <button class="btn btn-neon w-100 py-2" onclick="handleTicketPurchase('Pro', '₱2,499')">
+            <i class="bi bi-ticket-fill me-2"></i>GET PASS
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-4 reveal" style="transition-delay:0.4s;">
+        <div class="festival-card p-4 text-center h-100" style="border-color:rgba(240,192,64,0.3);">
+          <p class="text-uppercase mb-1" style="font-family:'Orbitron'; font-size:0.75rem; letter-spacing:3px; color:rgba(255,255,255,0.5);">VIP ALL-ACCESS</p>
+          <div class="price-value mb-1" style="color:var(--neon-yellow); text-shadow:0 0 20px rgba(240,192,64,0.5);">₱5,999</div>
+          <p style="color:rgba(255,255,255,0.4); font-size:0.8rem; margin-bottom:1.5rem;">per person</p>
+          <ul class="list-unstyled text-start mb-4" style="font-size:0.9rem; color:rgba(255,255,255,0.75);">
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>VIP All-Access
+            </li>
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>Front Row Seats
+            </li>
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>Meet &amp; Greet
+            </li>
+            <li class="py-2 border-bottom border-secondary border-opacity-25">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>Exclusive Lounge
+            </li>
+            <li class="py-2">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>Personal Concierge
+            </li>
+          </ul>
+          <button class="btn btn-neon-outline w-100 py-2" style="border-color:var(--neon-yellow); color:var(--neon-yellow);"
+            onmouseover="this.style.background='var(--neon-yellow)';this.style.color='#000';"
+            onmouseout="this.style.background='transparent';this.style.color='var(--neon-yellow)';"
+            onclick="handleTicketPurchase('VIP All-Access', '₱5,999')">
+            <i class="bi bi-ticket-fill me-2"></i>GET PASS
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="py-5" style="background: var(--dark-bg);">
+  <div class="container py-4">
+    <div class="text-center mb-2 reveal">
+      <div class="section-badge" style="border-color:rgba(255,45,120,0.4); background:rgba(255,45,120,0.08); color:var(--neon-pink);">
+        <i class="bi bi-chat-quote-fill"></i> TESTIMONIALS
+      </div>
+    </div>
+    <h2 class="section-title text-center mb-5 reveal" style="transition-delay:0.1s;">
+      WHAT FANS <span class="neon-pink-text">SAY</span>
+    </h2>
+
+    <div id="testimonialCarousel" class="carousel slide reveal" data-bs-ride="carousel" data-bs-interval="3500" data-bs-pause="false" style="transition-delay:0.2s;">
+
+      <div class="carousel-indicators" style="bottom:-40px;">
+        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2"></button>
+      </div>
+
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+              <div class="testimonial-card p-5 text-center">
+                <i class="bi bi-chat-quote-fill mb-3" style="font-size:3rem; color:var(--neon-pink);"></i>
+                <div class="mb-3">
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                </div>
+                <p class="fst-italic mb-4" style="font-size:1.15rem; color:rgba(255,255,255,0.85); line-height:1.8;">
+                  "Best concert experience I've ever had in my entire life. SoundWave Fest changed me."
+                </p>
+                <hr class="neon-divider" style="width:30%; margin-bottom:1.5rem;" />
+                <h5 style="font-family:'Orbitron'; font-size:0.9rem; letter-spacing:2px; color:#fff;">VALENTINA AQUINO</h5>
+                <p class="mb-0" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">Music Enthusiast</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+              <div class="testimonial-card p-5 text-center">
+                <i class="bi bi-chat-quote-fill mb-3" style="font-size:3rem; color:var(--neon-pink);"></i>
+                <div class="mb-3">
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                </div>
+                <p class="fst-italic mb-4" style="font-size:1.15rem; color:rgba(255,255,255,0.85); line-height:1.8;">
+                  "The lineup was absolutely insane. Already buying tickets for next year!"
+                </p>
+                <hr class="neon-divider" style="width:30%; margin-bottom:1.5rem;" />
+                <h5 style="font-family:'Orbitron'; font-size:0.9rem; letter-spacing:2px; color:#fff;">PZYRELL SHAYNE PULIDO</h5>
+                <p class="mb-0" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">Festival Regular</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+              <div class="testimonial-card p-5 text-center">
+                <i class="bi bi-chat-quote-fill mb-3" style="font-size:3rem; color:var(--neon-pink);"></i>
+                <div class="mb-3">
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                  <i class="bi bi-star-fill" style="color:var(--neon-yellow);"></i>
+                </div>
+                <p class="fst-italic mb-4" style="font-size:1.15rem; color:rgba(255,255,255,0.85); line-height:1.8;">
+                  "VIP experience was worth every single peso. Absolutely unforgettable night."
+                </p>
+                <hr class="neon-divider" style="width:30%; margin-bottom:1.5rem;" />
+                <h5 style="font-family:'Orbitron'; font-size:0.9rem; letter-spacing:2px; color:#fff;">JOENALYN RAMOS</h5>
+                <p class="mb-0" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">VIP Pass Holder</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="d-flex justify-content-center gap-3 mt-5">
+        <button class="carousel-btn" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="carousel-btn" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="py-5" style="background: var(--dark-surface);">
+  <div class="container py-4">
+    <div class="text-center mb-2 reveal">
+      <div class="section-badge">
+        <i class="bi bi-headphones"></i> CONTACT US
+      </div>
+    </div>
+    <h2 class="section-title text-center mb-2 reveal" style="transition-delay:0.1s;">
+      GET IN <span class="neon-text">TOUCH</span>
+    </h2>
+    <hr class="neon-divider reveal" style="transition-delay:0.15s;" />
+
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 reveal" style="transition-delay:0.2s;">
+        <form id="contactForm">
+
+          <div class="input-group mb-3">
+            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+            <input type="text" id="name" class="form-control neon-input" placeholder="Full Name" />
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+            <input type="email" id="email" class="form-control neon-input" placeholder="Email Address" />
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+            <input type="tel" id="phone" class="form-control neon-input" placeholder="Phone Number" />
+          </div>
+
+          <div class="input-group mb-4">
+            <span class="input-group-text align-items-start pt-2"><i class="bi bi-chat-left-text-fill"></i></span>
+            <textarea id="message" class="form-control neon-input" rows="5" placeholder="Your message..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-neon w-100 py-3">
+            <i class="bi bi-send-fill me-2"></i>SEND MESSAGE
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
+        <i class="bi bi-soundwave" style="color:var(--neon-purple); font-size:1.8rem;"></i>
+        <span style="font-family:'Orbitron'; font-size:1.3rem; font-weight:700; color:#fff; letter-spacing:2px;">
+          SOUNDWAVE FEST
+        </span>
+      </div>
+      <p style="color:rgba(255,255,255,0.4); font-size:0.9rem; margin-bottom:1.5rem;">
+        Feel The Beat. Live The Moment.
+      </p>
+
+      <div class="mb-4">
+        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+        <a href="#" class="social-icon"><i class="bi bi-tiktok"></i></a>
+        <a href="#" class="social-icon"><i class="bi bi-spotify"></i></a>
+      </div>
+
+      <hr class="neon-divider" style="width:40%;" />
+
+      <p style="color:rgba(255,255,255,0.3); font-size:0.82rem;">
+        &copy; 2026 SoundWave Fest. All Rights Reserved. Made with
+        <i class="bi bi-heart-fill" style="color:var(--neon-pink);"></i> for Music Lovers.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    const icon = themeToggle.querySelector('i');
+    if (document.body.classList.contains('light-mode')) {
+      icon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+      icon.style.color = 'var(--neon-yellow)';
+    } else {
+      icon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+      icon.style.color = '';
+    }
+  });
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name    = document.getElementById('name').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const phone   = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !phone || !message) {
+      Swal.fire({
+        title: 'Oops! 🎸',
+        text: 'Please fill in all fields before sending.',
+        icon: 'error',
+        confirmButtonColor: '#ff2d78',
+        background: '#12121a',
+        color: '#fff'
+      });
+      return;
+    }
+
+    Swal.fire({
+      title: 'Message Sent! 🎵',
+      text: "We'll get back to you soon. Stay tuned!",
+      icon: 'success',
+      confirmButtonColor: '#b026ff',
+      background: '#12121a',
+      color: '#fff'
+    });
+
+    this.reset();
+  });
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.navbar-custom .nav-link');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('nav-active'));
+        const active = document.querySelector(`.navbar-custom .nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('nav-active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(sec => sectionObserver.observe(sec));
+
+  function handleTicketPurchase(tier, price) {
+    Swal.fire({
+      title: `${tier} Pass Selected! 🎟️`,
+      html: `<p style="color:rgba(255,255,255,0.7);">You've selected the <strong style="color:#b026ff;">${tier}</strong> pass at <strong style="color:#f0c040;">${price}</strong>.<br>Complete your purchase at the box office or our official app.</p>`,
+      icon: 'success',
+      confirmButtonText: 'Awesome!',
+      confirmButtonColor: '#b026ff',
+      background: '#12121a',
+      color: '#fff'
+    });
+  }
+</script>
+
+</body>
+</html>
